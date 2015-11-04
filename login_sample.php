@@ -43,6 +43,18 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 				// kasutaja sisselogimise fn, failist functions.php
 				$login_response = $User->loginUser($email, $hash);
 				
+				if(isset($login_response->success)){
+					
+					$_SESSION["logged_in_user_id"] = $login_response->user->id;
+					$_SESSION["logged_in_user_email"] = $login_response->user->email;
+					
+					$_SESSION["login_success_message"] = $login_response->success->message;
+					
+					header("Location: data.php");
+					
+					
+				}
+				
 				
 			}
 		} // login if end

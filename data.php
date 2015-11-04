@@ -12,7 +12,19 @@
 		header("Location: login_sample.php");
 	}
 ?>
+<?php if(isset($_SESSION["login_success_message"])): ?>
+	
+	<p style="color:green;" >
+		<?=$_SESSION["login_success_message"];?>
+	</p>
+
+<?php 
+	//kustutan selle sõnumi pärast esimest näitamist
+	unset($_SESSION["login_success_message"]);
+	
+	endif; ?>
+
 <p>
-	Tere, <? echo $_SESSION["logged_in_user_id"];?>
-	<a href="?logout=1>"> Logi välja <a>
+	Tere, <?=$_SESSION["logged_in_user_email"];?> 
+	<a href="?logout=1"> Logi välja <a> 
 </p>
